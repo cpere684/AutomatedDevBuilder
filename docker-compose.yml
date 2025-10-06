@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  dev-environment:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USERNAME: developer
+        USER_UID: 1000
+        USER_GID: 1000
+    container_name: automated-dev-builder
+    volumes:
+      # Mount workspace directory
+      - ./workspace:/home/developer/workspace
+      # Mount Ansible playbooks
+      - ./ansible:/ansible
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+    stdin_open: true
+    tty: true
+    command: /bin/bash

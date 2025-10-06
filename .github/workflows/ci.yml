@@ -1,0 +1,82 @@
+name: CI - Validate Configuration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install ansible pyyaml
+    
+    - name: Validate YAML syntax
+      run: |
+        python3 -c "import yaml; yaml.safe_load(open('docker-compose.yml'))"
+        python3 -c "import yaml; yaml.safe_load(open('ansible/playbook.yml'))"
+        for file in ansible/vars/*.yml; do
+          echo "Validating $file"
+          python3 -c "import yaml; yaml.safe_load(open('$file'))"
+        done
+    
+    - name: Validate Ansible playbook syntax
+      run: |
+        cd ansible
+        ansible-playbook playbook.yml --syntax-check
+    
+    - name: Validate shell scripts
+      run: |
+        bash -n scripts/setup-docker.sh
+        bash -n scripts/setup-ansible.sh
+    
+    - name: Lint Ansible playbook
+      run: |
+        pip install ansible-lint
+        cd ansible
+        ansible-lint playbook.yml || true
+  
+  build:
+    runs-on: ubuntu-latest
+    needs: validate
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Build Docker image
+      run: |
+        docker-compose build
+    
+    - name: Start container
+      run: |
+        docker-compose up -d
+    
+    - name: Wait for container
+      run: |
+        sleep 10
+        docker-compose ps
+    
+    - name: Test container access
+      run: |
+        docker-compose exec -T dev-environment whoami
+        docker-compose exec -T dev-environment pwd
+    
+    - name: Stop container
+      run: |
+        docker-compose down
