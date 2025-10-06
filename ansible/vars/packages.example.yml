@@ -1,0 +1,38 @@
+---
+# Example: Minimal Web Development Environment
+# Copy this to ansible/vars/packages.yml and customize as needed
+
+common_packages:
+  - build-essential
+  - curl
+  - wget
+  - git
+  - vim
+  - htop
+  - tree
+  - unzip
+
+programming_tools:
+  - python3
+  - python3-pip
+  - python3-venv
+
+version_control_tools:
+  - git
+
+database_tools:
+  - postgresql-client
+  - sqlite3
+
+container_tools:
+  - docker.io
+
+editor_tools:
+  - vim
+  - nano
+  - tmux
+
+install_nodejs: true
+nodejs_version: "18"
+install_databases: true
+install_containers: false

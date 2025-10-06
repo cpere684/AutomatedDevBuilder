@@ -1,0 +1,66 @@
+---
+# Example: Full Stack Development Environment
+# Copy this to ansible/vars/packages.yml and customize as needed
+
+common_packages:
+  - build-essential
+  - curl
+  - wget
+  - git
+  - vim
+  - nano
+  - htop
+  - tree
+  - unzip
+  - zip
+  - software-properties-common
+  - apt-transport-https
+  - ca-certificates
+  - gnupg
+  - lsb-release
+  - jq
+  - net-tools
+
+programming_tools:
+  - python3
+  - python3-pip
+  - python3-venv
+  - python3-dev
+  - gcc
+  - g++
+  - make
+  - cmake
+  - openjdk-11-jdk
+  - openjdk-17-jdk
+  - golang-go
+  - ruby
+  - ruby-dev
+
+version_control_tools:
+  - git
+  - git-flow
+  - mercurial
+  - subversion
+
+database_tools:
+  - postgresql-client
+  - mysql-client
+  - sqlite3
+  - redis-tools
+  - mongodb-clients
+
+container_tools:
+  - docker.io
+  - docker-compose
+
+editor_tools:
+  - vim
+  - nano
+  - emacs-nox
+  - tmux
+  - screen
+
+install_nodejs: true
+nodejs_version: "18"
+install_databases: true
+install_containers: true

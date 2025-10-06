@@ -1,0 +1,10 @@
+# Workspace Directory
+
+This directory is mounted as a volume in the Docker container at `/home/developer/workspace`.
+
+Use this directory to:
+- Store your development projects
+- Share files between host and container
+- Persist data across container restarts
+
+The directory is automatically created when you run the Docker setup.

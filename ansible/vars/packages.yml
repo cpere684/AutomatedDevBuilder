@@ -1,0 +1,70 @@
+---
+# Package definitions for development environment
+# Customize these lists based on your organization's requirements
+
+# Common development packages
+common_packages:
+  - build-essential
+  - curl
+  - wget
+  - git
+  - vim
+  - nano
+  - htop
+  - tree
+  - unzip
+  - zip
+  - software-properties-common
+  - apt-transport-https
+  - ca-certificates
+  - gnupg
+  - lsb-release
+
+# Programming language tools and interpreters
+programming_tools:
+  - python3
+  - python3-pip
+  - python3-venv
+  - python3-dev
+  - gcc
+  - g++
+  - make
+  - cmake
+  - openjdk-11-jdk
+  - golang-go
+
+# Version control tools
+version_control_tools:
+  - git
+  - git-flow
+  - mercurial
+
+# Database tools and clients
+database_tools:
+  - postgresql-client
+  - mysql-client
+  - sqlite3
+  - redis-tools
+
+# Container and orchestration tools
+container_tools:
+  - docker.io
+  - docker-compose
+
+# Text editors and development tools
+editor_tools:
+  - vim
+  - nano
+  - emacs-nox
+  - tmux
+  - screen
+
+# Optional: Install Node.js
+install_nodejs: true
+nodejs_version: "18"
+
+# Optional: Install databases
+install_databases: true
+
+# Optional: Install container tools
+install_containers: true
