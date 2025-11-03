@@ -1,0 +1,7 @@
+# Generated files
+docker-compose.yml
+.selected_envs
+
+# Docker volumes and runtime
+.env
+*.log
