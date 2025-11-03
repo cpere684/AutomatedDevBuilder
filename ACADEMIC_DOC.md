@@ -199,5 +199,3 @@ E. Runbook / Onboarding checklist — add links to templates and VM snapshot pla
 F. Evidence Index — links to smoke-validation logs, CI runs, pilot onboarding notes
 
 ---  
-Notes  
-- I updated the document focus from an academic/student audience to IT staff / operational onboarding workflows. Replace placeholders with internal backlog links, measured metrics from pilot runs, and your architecture diagram (docs/architecture.png) to complete the record.
