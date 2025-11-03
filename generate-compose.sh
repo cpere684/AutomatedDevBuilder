@@ -7,7 +7,7 @@
 # Saves last selection to .selected_envs for convenience.
 # Make executable: chmod +x generate-compose.sh
 
-ROOT_DIR="$(cd ""$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 OUTFILE="$ROOT_DIR/docker-compose.yml"
 SELECTION_FILE="$ROOT_DIR/.selected_envs"
 PROFILES_DIR="$ROOT_DIR/profiles"
