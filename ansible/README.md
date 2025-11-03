@@ -1,4 +1,3 @@
-```markdown
 # Ansible helper (optional)
 
 This folder contains a tiny Ansible playbook that installs Docker and the compose plugin on Ubuntu.
@@ -8,4 +7,3 @@ Usage (on the host, with Ansible installed):
   ansible-playbook -i localhost, -c local install-docker.yml
 
 Note: Running as root or with sudo is required for package installation.
-```
