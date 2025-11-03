@@ -116,6 +116,7 @@ for env in $ENVS; do
       - \"5432:5432\"
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 "
       ;;
     *)
