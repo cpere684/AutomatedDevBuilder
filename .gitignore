@@ -1,0 +1,30 @@
+# Generated docker-compose file
+docker-compose.yml
+
+# Selected environment cache
+.selected_envs
+
+# Docker volumes and data
+db_data/
+
+# Node modules
+node_modules/
+npm-debug.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
