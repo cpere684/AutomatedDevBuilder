@@ -44,8 +44,8 @@ if [ "$1" = "--preset" ]; then
     exit 1
   fi
   # read envs from preset file (simple YAML with 'services: python,node')
-envs_line="$(grep -E '^services:' "$preset_file" || true)"
-envs="$(echo "$envs_line" | sed -E 's/^services:[[:space:]]*//; s/,/ /g')"
+  envs_line="$(grep -E '^services:' "$preset_file" || true)"
+  envs="$(echo "$envs_line" | sed -E 's/^services:[[:space:]]*//; s/,/ /g')"
   set -- $envs
 fi
 
