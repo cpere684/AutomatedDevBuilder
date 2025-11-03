@@ -36,7 +36,12 @@ select_envs() {
   if [ "$choices" = "4" ]; then
     echo
     echo "Available presets:"
-    ls "$ROOT_DIR/profiles"/*.yml 2>/dev/null | xargs -n1 basename
+    if ls "$ROOT_DIR/profiles"/*.yml >/dev/null 2>&1; then
+      ls "$ROOT_DIR/profiles"/*.yml | xargs -n1 basename
+    else
+      echo "No presets found in $ROOT_DIR/profiles"
+      return 1
+    fi
     printf "Enter preset name (e.g. python-only): "
     read -r preset
     "$ROOT_DIR/generate-compose.sh" --preset "$preset"
