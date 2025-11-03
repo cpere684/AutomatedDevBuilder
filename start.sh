@@ -15,7 +15,7 @@ show_menu() {
   echo "3) Stop (docker compose down)"
   echo "4) Show running containers"
   echo "5) Tail logs (docker compose logs -f)"
-  echo "6) Open app in browser (http://localhost:8000)"
+  echo "6) Open app in browser"
   echo "7) Exit"
   echo
   printf "Choose an option: "
@@ -99,10 +99,26 @@ while true; do
       docker compose logs -f
       ;;
     6)
-      if which xdg-open >/dev/null 2>&1; then
-        xdg-open "http://localhost:8000" || echo "Open http://localhost:8000 in your browser"
+      # Detect which services are running and provide appropriate URLs
+      if docker compose ps --services --filter "status=running" 2>/dev/null | grep -q node-app; then
+        echo "Opening Node.js app..."
+        if which xdg-open >/dev/null 2>&1; then
+          xdg-open "http://localhost:3000" || echo "Open http://localhost:3000 in your browser"
+        else
+          echo "Open http://localhost:3000 in your browser"
+        fi
+      elif docker compose ps --services --filter "status=running" 2>/dev/null | grep -q python-app; then
+        echo "Opening Python app..."
+        if which xdg-open >/dev/null 2>&1; then
+          xdg-open "http://localhost:8000" || echo "Open http://localhost:8000 in your browser"
+        else
+          echo "Open http://localhost:8000 in your browser"
+        fi
       else
-        echo "Open http://localhost:8000 in your browser"
+        echo "No web applications are running."
+        echo "Available URLs:"
+        echo "  Node.js app: http://localhost:3000"
+        echo "  Python app: http://localhost:8000"
       fi
       ;;
     7)
